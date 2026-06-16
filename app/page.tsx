@@ -20,7 +20,7 @@ export default function Home() {
           </span>
         </div>
         <div className="flex justify-end items-center">
-          <Progress current={currentIndex + 1} total={dishes.length} />
+          <Progress current={(currentIndex % dishes.length) + 1} total={dishes.length} />
         </div>
       </header>
 

@@ -74,7 +74,7 @@ export default function DishDeck({ dishes, onIndexChange }: DishDeckProps) {
 
     const isSwipeRight = offset > threshold || (velocity > 300 && offset > 20);
     const isSwipeLeft = offset < -threshold || (velocity < -300 && offset < -20);
-    const hasNextCard = currentIndex < dishes.length - 1;
+    const hasNextCard = dishes.length > 0;
 
     if ((isSwipeRight || isSwipeLeft) && hasNextCard) {
       setIsAnimating(true);
@@ -106,9 +106,9 @@ export default function DishDeck({ dishes, onIndexChange }: DishDeckProps) {
     }
   };
 
-  const card1 = dishes[currentIndex];
-  const card2 = dishes[currentIndex + 1];
-  const card3 = dishes[currentIndex + 2];
+  const card1 = dishes.length > 0 ? dishes[currentIndex % dishes.length] : undefined;
+  const card2 = dishes.length > 0 ? dishes[(currentIndex + 1) % dishes.length] : undefined;
+  const card3 = dishes.length > 0 ? dishes[(currentIndex + 2) % dishes.length] : undefined;
 
   return (
     <div className="relative w-full h-full flex items-center justify-center overflow-visible">
