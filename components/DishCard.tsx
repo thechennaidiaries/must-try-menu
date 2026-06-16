@@ -11,7 +11,7 @@ interface DishCardProps {
 
 const DishCard = memo(function DishCard({ dish, priority = false }: DishCardProps) {
   return (
-    <div className="relative w-full h-full overflow-hidden rounded-[36px] bg-[#121212] select-none shadow-[0_24px_48px_-15px_rgba(0,0,0,0.8)]">
+    <div className="relative w-full h-full overflow-hidden rounded-[36px] bg-[#121212] select-none border border-white/[0.08] shadow-[0_24px_48px_-15px_rgba(0,0,0,0.8)]">
       {/* Immersive Image */}
       <div className="absolute inset-0 w-full h-full">
         <Image

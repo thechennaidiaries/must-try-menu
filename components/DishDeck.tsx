@@ -55,15 +55,15 @@ export default function DishDeck({ dishes, onIndexChange }: DishDeckProps) {
   });
 
   // Card 2 transforms (scales up to 1, translates up to 0, rotates to 0)
-  const scaleCard2 = useTransform(dragProgress, [0, 1], [0.97, 1]);
-  const yCard2 = useTransform(dragProgress, [0, 1], [8, 0]);
-  const rotateCard2 = useTransform(dragProgress, [0, 1], [-1, 0]);
+  const scaleCard2 = useTransform(dragProgress, [0, 1], [0.98, 1]);
+  const yCard2 = useTransform(dragProgress, [0, 1], [4, 0]);
+  const rotateCard2 = useTransform(dragProgress, [0, 1], [-3.5, 0]);
 
-  // Card 3 transforms (scales up to 0.97, translates up to 8px, rotates to -1deg)
-  const scaleCard3 = useTransform(dragProgress, [0, 1], [0.94, 0.97]);
-  const yCard3 = useTransform(dragProgress, [0, 1], [16, 8]);
-  const rotateCard3 = useTransform(dragProgress, [0, 1], [1, -1]);
-  const opacityCard3 = useTransform(dragProgress, [0, 1], [0.35, 1]);
+  // Card 3 transforms (scales up to 0.98, translates up to 4px, rotates to -3.5deg)
+  const scaleCard3 = useTransform(dragProgress, [0, 1], [0.96, 0.98]);
+  const yCard3 = useTransform(dragProgress, [0, 1], [8, 4]);
+  const rotateCard3 = useTransform(dragProgress, [0, 1], [3.5, -3.5]);
+  const opacityCard3 = useTransform(dragProgress, [0, 1], [0.4, 1]);
 
   const handleDragEnd = async (_event: any, info: any) => {
     if (isAnimating) return;
@@ -122,7 +122,7 @@ export default function DishDeck({ dishes, onIndexChange }: DishDeckProps) {
             opacity: opacityCard3,
             zIndex: 10,
           }}
-          className="absolute w-[92%] h-full origin-bottom select-none pointer-events-none"
+          className="absolute w-[92%] h-full origin-center select-none pointer-events-none"
         >
           <DishCard dish={card3} />
         </motion.div>
@@ -137,7 +137,7 @@ export default function DishDeck({ dishes, onIndexChange }: DishDeckProps) {
             rotate: rotateCard2,
             zIndex: 20,
           }}
-          className="absolute w-[92%] h-full origin-bottom select-none pointer-events-none"
+          className="absolute w-[92%] h-full origin-center select-none pointer-events-none"
         >
           <DishCard dish={card2} />
         </motion.div>
@@ -158,7 +158,7 @@ export default function DishDeck({ dishes, onIndexChange }: DishDeckProps) {
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.6}
           onDragEnd={handleDragEnd}
-          className="absolute w-[92%] h-full origin-bottom cursor-grab active:cursor-grabbing touch-pan-y"
+          className="absolute w-[92%] h-full origin-center cursor-grab active:cursor-grabbing touch-pan-y"
         >
           <DishCard dish={card1} priority />
         </motion.div>
