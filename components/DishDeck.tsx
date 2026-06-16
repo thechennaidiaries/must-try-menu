@@ -55,15 +55,15 @@ export default function DishDeck({ dishes, onIndexChange }: DishDeckProps) {
   });
 
   // Card 2 transforms (scales up to 1, translates up to 0, rotates to 0)
-  const scaleCard2 = useTransform(dragProgress, [0, 1], [0.98, 1]);
-  const yCard2 = useTransform(dragProgress, [0, 1], [4, 0]);
-  const rotateCard2 = useTransform(dragProgress, [0, 1], [-3.5, 0]);
+  const scaleCard2 = useTransform(dragProgress, [0, 1], [0.99, 1]);
+  const yCard2 = useTransform(dragProgress, [0, 1], [0, 0]);
+  const rotateCard2 = useTransform(dragProgress, [0, 1], [-4, 0]);
 
-  // Card 3 transforms (scales up to 0.98, translates up to 4px, rotates to -3.5deg)
-  const scaleCard3 = useTransform(dragProgress, [0, 1], [0.96, 0.98]);
-  const yCard3 = useTransform(dragProgress, [0, 1], [8, 4]);
-  const rotateCard3 = useTransform(dragProgress, [0, 1], [3.5, -3.5]);
-  const opacityCard3 = useTransform(dragProgress, [0, 1], [0.4, 1]);
+  // Card 3 transforms (scales up to 0.99, translates up to 0, rotates to -4deg)
+  const scaleCard3 = useTransform(dragProgress, [0, 1], [0.98, 0.99]);
+  const yCard3 = useTransform(dragProgress, [0, 1], [0, 0]);
+  const rotateCard3 = useTransform(dragProgress, [0, 1], [4, -4]);
+  const opacityCard3 = useTransform(dragProgress, [0, 1], [0.45, 1]);
 
   const handleDragEnd = async (_event: any, info: any) => {
     if (isAnimating) return;
