@@ -4,9 +4,10 @@ export default function ActionButton() {
   return (
     <div className="w-full flex justify-center items-center select-none">
       <a
-        href="#"
-        onClick={(e) => e.preventDefault()}
-        className="w-[92%] bg-gradient-to-r from-[#161224] to-[#211936] border border-white/10 rounded-[24px] p-5 flex items-center justify-between shadow-[0_8px_32px_rgba(0,0,0,0.4)] active:scale-[0.98] transition-all duration-200 ease-out"
+        href="https://hi.switchy.io/outsyd"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-[92%] bg-gradient-to-r from-[#2B1B62] to-[#48329E] border border-white/10 rounded-[24px] p-5 flex items-center justify-between shadow-[0_8px_32px_rgba(0,0,0,0.4)] active:scale-[0.98] transition-all duration-200 ease-out"
       >
         <div className="flex flex-col text-left pr-4">
           <span className="text-sm font-bold text-white tracking-wide">
