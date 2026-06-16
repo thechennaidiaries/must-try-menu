@@ -20,7 +20,8 @@ export default function DishDeck({ dishes, onIndexChange }: DishDeckProps) {
   // Initialize threshold based on window width
   useEffect(() => {
     const handleResize = () => {
-      setThreshold(window.innerWidth * 0.25);
+      // 20% of screen width, capped at 80px for standard finger travel
+      setThreshold(Math.min(window.innerWidth * 0.2, 80));
     };
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -72,21 +73,23 @@ export default function DishDeck({ dishes, onIndexChange }: DishDeckProps) {
     const velocity = info.velocity.x;
     const screenWidth = window.innerWidth;
 
-    const isSwipeRight = offset > threshold || (velocity > 300 && offset > 20);
-    const isSwipeLeft = offset < -threshold || (velocity < -300 && offset < -20);
+    // Detect fast flick or deep drag
+    const isSwipeRight = offset > threshold || (velocity > 200 && offset > 10);
+    const isSwipeLeft = offset < -threshold || (velocity < -200 && offset < -10);
     const hasNextCard = dishes.length > 0;
 
     if ((isSwipeRight || isSwipeLeft) && hasNextCard) {
       setIsAnimating(true);
       const direction = isSwipeLeft ? -1 : 1;
-      const targetX = direction * screenWidth * 1.25;
+      const targetX = direction * screenWidth * 1.15;
 
-      // Animate the card completely offscreen
+      // Animate the card completely offscreen preserving momentum
       await animate(dragX, targetX, {
         type: "spring",
-        stiffness: 220,
-        damping: 30,
-        restDelta: 0.1,
+        stiffness: 350,
+        damping: 28,
+        velocity: velocity,
+        restDelta: 1,
       });
 
       // Move to the next card
@@ -99,8 +102,9 @@ export default function DishDeck({ dishes, onIndexChange }: DishDeckProps) {
       setIsAnimating(true);
       await animate(dragX, 0, {
         type: "spring",
-        stiffness: 220,
-        damping: 30,
+        stiffness: 350,
+        damping: 28,
+        velocity: velocity,
       });
       setIsAnimating(false);
     }
@@ -153,10 +157,9 @@ export default function DishDeck({ dishes, onIndexChange }: DishDeckProps) {
             opacity: opacityCard1,
             zIndex: 30,
           }}
-          drag="x"
-          dragDirectionLock
+          drag={isAnimating ? false : "x"}
           dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0.6}
+          dragElastic={0.65}
           onDragEnd={handleDragEnd}
           className="absolute w-[92%] h-full origin-center cursor-grab active:cursor-grabbing touch-pan-y"
         >
