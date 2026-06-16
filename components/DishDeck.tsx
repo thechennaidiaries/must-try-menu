@@ -20,8 +20,8 @@ export default function DishDeck({ dishes, onIndexChange }: DishDeckProps) {
   // Initialize threshold based on window width
   useEffect(() => {
     const handleResize = () => {
-      // 20% of screen width, capped at 80px for standard finger travel
-      setThreshold(Math.min(window.innerWidth * 0.2, 80));
+      // 15% of screen width, capped at 60px for standard finger travel
+      setThreshold(Math.min(window.innerWidth * 0.15, 60));
     };
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -73,23 +73,23 @@ export default function DishDeck({ dishes, onIndexChange }: DishDeckProps) {
     const velocity = info.velocity.x;
     const screenWidth = window.innerWidth;
 
-    // Detect fast flick or deep drag
-    const isSwipeRight = offset > threshold || (velocity > 200 && offset > 10);
-    const isSwipeLeft = offset < -threshold || (velocity < -200 && offset < -10);
+    // Detect fast flick or light drag
+    const isSwipeRight = offset > threshold || (velocity > 150 && offset > 5);
+    const isSwipeLeft = offset < -threshold || (velocity < -150 && offset < -5);
     const hasNextCard = dishes.length > 0;
 
     if ((isSwipeRight || isSwipeLeft) && hasNextCard) {
       setIsAnimating(true);
       const direction = isSwipeLeft ? -1 : 1;
-      const targetX = direction * screenWidth * 1.15;
+      const targetX = direction * screenWidth * 1.1;
 
-      // Animate the card completely offscreen preserving momentum
+      // Animate the card completely offscreen preserving momentum and ending early for instant transition
       await animate(dragX, targetX, {
         type: "spring",
-        stiffness: 350,
-        damping: 28,
+        stiffness: 500,
+        damping: 32,
         velocity: velocity,
-        restDelta: 1,
+        restDelta: 10,
       });
 
       // Move to the next card
@@ -102,8 +102,8 @@ export default function DishDeck({ dishes, onIndexChange }: DishDeckProps) {
       setIsAnimating(true);
       await animate(dragX, 0, {
         type: "spring",
-        stiffness: 350,
-        damping: 28,
+        stiffness: 450,
+        damping: 30,
         velocity: velocity,
       });
       setIsAnimating(false);
