@@ -24,19 +24,29 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Padding between Header and Card: 5% height */}
-      <div className="h-[5dvh] w-full" />
+      {/* Spacer: 2% height */}
+      <div className="h-[2dvh] w-full" />
 
-      {/* Middle Card Area: 65% height */}
-      <section className="h-[65dvh] w-full flex items-center justify-center overflow-visible">
+      {/* Heading: 6% height */}
+      <div className="h-[6dvh] w-full flex items-center justify-center overflow-hidden">
+        <h2 className="text-[22px] font-bold tracking-tight text-white/90 text-center select-none">
+          Must Try Foods
+        </h2>
+      </div>
+
+      {/* Spacer: 2% height */}
+      <div className="h-[2dvh] w-full" />
+
+      {/* Middle Card Area: 55% height */}
+      <section className="h-[55dvh] w-full flex items-center justify-center overflow-visible">
         <DishDeck dishes={dishes} onIndexChange={setCurrentIndex} />
       </section>
 
       {/* Spacing / Gap: 5% height */}
       <div className="h-[5dvh] w-full" />
 
-      {/* Bottom Action Area: 20% height */}
-      <footer className="h-[20dvh] w-full flex items-center justify-center overflow-hidden pb-safe">
+      {/* Bottom Action Area: 25% height */}
+      <footer className="h-[25dvh] w-full flex items-center justify-center overflow-hidden pb-safe">
         <ActionButton />
       </footer>
     </main>
